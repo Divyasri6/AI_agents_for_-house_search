@@ -12,6 +12,36 @@ The application provides detailed property information like price, bedrooms, bat
 - Displays nearby amenities (grocery stores, hospitals, pharmacies, gyms, restaurants).
 - Uses an API to fetch property details and amenities data.
 
+# Architecture Overview
+
+## The system consists of three main layers:
+- **Frontend (React)** – User Interface  
+- **Backend (Flask & CrewAI Agents)** – Handles business logic, agents, and data processing  
+- **External Services** – Redfin, Google APIs, and other external sources  
+
+---
+
+## Components & Workflow  
+
+### 1. User Interaction (React Frontend)  
+- User inputs a location or property address.  
+- The frontend sends a request to the Flask API.  
+
+### 2. Flask API & CrewAI Agents (Backend)  
+- Flask receives the request and triggers **CrewAI Agents**.  
+- Agents perform the following tasks:  
+  - **Real Estate Data Specialist** → Scrapes Redfin for property listings.  
+  - **Nearby Amenities Finder** → Uses `ScrapeWebsiteTool` to find nearby amenities (grocery stores, hospitals, gyms, etc.).  
+  - **Assistant Agent** → Verifies and cross-checks property details before sending them to the frontend.  
+
+### 3. External Integrations  
+- CrewAI agents use `ScrapeWebsiteTool` to extract real-time property data from Redfin.  
+- **Google Maps API** (or other location-based APIs) helps find nearby amenities.  
+
+### 4. Response Handling  
+- The Flask backend processes the agent results and structures them into a response.  
+- The React frontend displays the results in a user-friendly format.  
+
 ## Requirements
 
 - Python 3.x
