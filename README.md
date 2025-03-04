@@ -15,14 +15,16 @@ The application provides detailed property information like price, bedrooms, bat
 # Architecture Overview
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["User (React Frontend)"] --> B["Flask API"]
-    B --> C{"CrewAI Agents"} & J["Response Handling"]
-    C --> D["Real Estate Data Specialist (Redfin Scraper)"] & E["Nearby Amenities Finder (ScrapeWebsiteTool)"] & F["Assistant Agent (Verification)"]
+    B --> C{"CrewAI Agents"}
+    C -->|Scrapes Redfin| D["Real Estate Data Specialist"]
+    C -->|Finds amenities| E["Nearby Amenities Finder"]
+    C -->|Verifies details| F["Assistant Agent"]
     D --> G["Redfin"]
     E --> H["Google Maps API"] & I["Various Websites (Amenities)"]
     F --> D & E
-    J --> A
+    B --> J["Response Handling"] --> A
 ```
 ## The system consists of three main layers:
 - **Frontend (React)** – User Interface  
