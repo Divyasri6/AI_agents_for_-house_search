@@ -16,15 +16,21 @@ The application provides detailed property information like price, bedrooms, bat
 
 ```mermaid
 flowchart TD
-    A["User (React Frontend)"] --> B["Flask API"]
-    B --> C{"CrewAI Agents"}
-    C -->|Scrapes Redfin| D["Real Estate Data Specialist"]
-    C -->|Finds amenities| E["Nearby Amenities Finder"]
-    C -->|Verifies details| F["Assistant Agent"]
-    D --> G["Redfin"]
-    E --> H["Google Maps API"] & I["Various Websites (Amenities)"]
-    F --> D & E
-    B --> J["Response Handling"] --> A
+   A["👤 User "] --> B["⚛️ React Frontend"] --> C["🔗 Flask API"]
+    C --> D{"🤖 CrewAI Agents"}
+    D -->|Scrapes Redfin| E["🏡 Real Estate Data Specialist"]
+    D -->|Finds amenities| F["📍 Nearby Amenities Finder"]
+    D -->|Verifies details| G["✅ Assistant Agent"]
+    
+    E --> H["🌐 Redfin"]
+    F --> I["🗺️ Google Maps API"] & J["🏢 Various Websites (Amenities)"]
+    
+    G --> E & F
+    C --> K["📦 Response Handling"] --> B
+
+    style F color:#FFFFFF, fill:#AA00FF, stroke:#AA00FF
+    style E color:#FFFFFF, stroke:#00C853, fill:#00C853
+    style G color:#FFFFFF, stroke:#2962FF, fill:#2962FF
 ```
 ## The system consists of three main layers:
 - **Frontend (React)** – User Interface  
